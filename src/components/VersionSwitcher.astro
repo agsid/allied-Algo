@@ -1,0 +1,102 @@
+---
+const { versions, color } = Astro.props;
+---
+
+<div class="vs" style={`--vs-color:${color}`}>
+  <span class="vs-label">Versions</span>
+  <div class="vs-track">
+    {versions.map((v: any) =>
+      v.isCurrent ? (
+        <span class="vs-item is-current" aria-current="page">
+          <span class="vs-dot" />
+          <span class="vs-tag">{v.label}</span>
+        </span>
+      ) : (
+        <a href={`/projects/${v.id}/`} class="vs-item">
+          <span class="vs-dot" />
+          <span class="vs-tag">{v.label}</span>
+        </a>
+      )
+    )}
+  </div>
+</div>
+
+<style>
+  .vs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .vs-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .vs-track {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .vs-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    margin-right: -1px;
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: inherit;
+    opacity: 0.6;
+    transition:
+      opacity 0.15s ease,
+      background 0.15s ease;
+  }
+
+  :global([data-theme="dark"]) .vs-item {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .vs-item:first-child {
+    border-radius: 999px 0 0 999px;
+  }
+
+  .vs-item:last-child {
+    border-radius: 0 999px 999px 0;
+  }
+
+  a.vs-item:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="dark"]) a.vs-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .vs-item.is-current {
+    opacity: 1;
+    border-color: var(--vs-color);
+    background: color-mix(in srgb, var(--vs-color) 15%, transparent);
+  }
+
+  .vs-dot {
+    height: 0.4rem;
+    width: 0.4rem;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .vs-item.is-current .vs-dot {
+    background: var(--vs-color);
+  }
+</style>

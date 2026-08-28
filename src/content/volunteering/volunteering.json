@@ -1,12 +1,13 @@
 [
   {
-    "id": "rcf-founder",
+    "id": "rcf",
     "order": 1,
-    "role": "Founder & Developer",
+    "role": "Communicaiton Director + DEV",
     "org": "Robotics Catalyst Foundation",
-    "period": "2020 — present",
-    "desc": "Build and maintain the software robotics teams use day to day — rosters, scouting, and season tooling — and hand it to teams for free.",
-    "tags": ["Robotics", "Open tooling"],
+    "period": "2025 — present",
+    "desc": "I spend my time coding Robolyst.org a all in one toolkit for FTC Teams and sharing that with the community",
+    "hours": 40,
+    "tags": ["Robotics", "Communications"],
     "url": "https://robotics-catalyst.org"
   },
   {
@@ -14,29 +15,32 @@
     "order": 2,
     "role": "Student Mentor",
     "org": "SingulTech Robotics",
-    "period": "2023 — present",
+    "period": "2026 — present",
     "desc": "Ramp newer teammates onto the codebase and the build process, from first pull request to competition-day debugging.",
+    "hours": 10,
     "tags": ["Mentoring", "FIRST"],
     "url": "https://singul.tech/"
   },
   {
-    "id": "ctftc-workshops",
+    "id": "hindiusa",
     "order": 3,
-    "role": "CTF Workshop Lead",
-    "org": "CTFTC",
+    "role": "Teacher",
+    "org": "HindiUSA",
     "period": "2023 — present",
-    "desc": "Run capture-the-flag practice sessions for students getting into security, and maintain the platform that hosts the challenges.",
-    "tags": ["Security", "Teaching"],
-    "url": "https://ctftc.robotics-catalyst.org"
+    "desc": "I teach Hindi a language to young students",
+    "hours": 150,
+    "tags": ["Teaching"],
+    "url": "https://hindiusa.org"
   },
   {
-    "id": "alliedalgos-community",
+    "id": "leadership",
     "order": 4,
-    "role": "Community Contributor",
-    "org": "AlliedAlgos",
-    "period": "2026 — present",
-    "desc": "Help run a community site for algorithm and competitive-programming practice, including write-ups and problem sets.",
-    "tags": ["Community", "Writing"],
-    "url": "https://alliedalgos.org"
+    "role": "Mentor",
+    "org": "YB World TKD",
+    "period": "2023 — present",
+    "desc": "Help teach student taekwondo and run testing.",
+    "hours": 87,
+    "tags": ["Community", "Leader"],
+    "url": "https://ybworldtkd.org"
   }
 ]

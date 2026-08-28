@@ -4,9 +4,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import ProjectTile from "../../components/ProjectTile.astro";
 
-const all = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const all = (await getCollection("projects"))
+  .filter((p) => !p.data.versionOf)
+  .sort((a, b) => a.data.order - b.data.order);
 const featured = all.filter((p) => p.data.featured);
-const archive = all.filter((p) => !p.data.featured);
 ---
 
 <BaseLayout title="Projects" description="Case studies for Robolyst, SingulTech, CTFTC, and AlliedAlgos — projects built by Sid Agrawal.">
@@ -18,28 +19,87 @@ const archive = all.filter((p) => !p.data.featured);
       <div class="works-intro mt-2">
         <h1 class="works-title">All <br />Projects</h1>
         <p class="works-note">
-          Mostly robotics tools, a security training platform, and a couple of community sites — everything I've built and shipped.
+          Mostly robotics tools, a CTF training platform, and a couple of community sites — everything I've built and shipped.
         </p>
-      </div>
-      <div class="mt-12 flex flex-col gap-10">
-        {featured.map((project, i) => <ProjectCard project={project} index={i} />)}
-        <div class="hidden h-[60vh] shrink-0 sm:block" aria-hidden="true"></div>
       </div>
 
-      <div class="mt-4">
+      <section aria-labelledby="featured-heading" class="mt-12 flex flex-col gap-10">
+        <h2 id="featured-heading" class="sr-only">Featured projects</h2>
+
+        <a href="#all-projects" class="skip-to-cards self-end">
+          Skip to cards view
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        {featured.map((project, i) => <ProjectCard project={project} index={i} />)}
+        <div class="hidden h-[60vh] shrink-0 sm:block" aria-hidden="true"></div>
+      </section>
+
+      <section aria-labelledby="all-projects" class="mt-4">
         <p class="font-hand text-2xl text-[color:var(--color-accent)] dark:text-[color:var(--color-accent-dark)]">
-          where it started
+          or browse everything
         </p>
-        <h2 class="mt-1 font-display text-3xl font-bold">The archive.</h2>
+        <h2 id="all-projects" tabindex="-1" class="mt-1 font-display text-3xl font-bold">
+          Every project.
+        </h2>
         <p class="mt-3 max-w-xl text-black/60 dark:text-white/60">
-          Everything before the current run — from a Scratch macOS clone I started in 4th grade to the three rebuilds
-          of my robotics team's site. Kept here because the early ones are the reason for the later ones.
+          The same projects above, plus everything else — from a Scratch macOS clone I started in 4th grade to the
+          three rebuilds of my robotics team's site — all in one plain, scannable grid.
         </p>
 
         <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {archive.map((project) => <ProjectTile project={project} />)}
+          {all.map((project) => <ProjectTile project={project} />)}
         </div>
-      </div>
+      </section>
     </div>
   </main>
 </BaseLayout>
+
+<style>
+  .skip-to-cards {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    border: 2px solid rgba(0, 0, 0, 0.8);
+    border-radius: 999px;
+    background: rgba(250, 249, 247, 0.85);
+    box-shadow: 3px 3px 0 #000;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #111212;
+    backdrop-filter: blur(8px);
+    transition: transform 0.15s ease;
+    z-index: 999;
+  }
+
+  .skip-to-cards:hover {
+    transform: translateY(-2px);
+  }
+
+  :global([data-theme="dark"]) .skip-to-cards {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(27, 27, 31, 0.85);
+    box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.25);
+    color: #f2f1ee;
+  }
+
+  /* Pinned to the same top offset as the folder cards, so it rides
+     alongside the stack as you scroll and disappears once it ends. */
+  @media (min-width: 640px) {
+    .skip-to-cards {
+      position: sticky;
+      top: 6.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skip-to-cards:hover {
+      transform: none;
+    }
+  }
+</style>

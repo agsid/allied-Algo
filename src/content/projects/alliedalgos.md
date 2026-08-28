@@ -1,23 +1,22 @@
 ---
-title: "AlliedAlgos"
-summary: "A community site for algorithm and competitive-programming enthusiasts, shipped straight to GitHub Pages."
+title: "Allied Algoriothms Webstie"
+summary: "An informational website for my FLL team. It included opensource projects i learned about databses, discord webshooks, asnd frameworks. I made many different versions of this ending up with 5 versions."
 tags: ["Astro", "GitHub Pages", "TOML"]
 url: "https://alliedalgos.org"
 color: "#7ee08a"
 featured: true
 order: 4
-date: 2026-01-10
+date: 2026-03-10
 ---
 
 ## Overview
 
-AlliedAlgos is a community site for people who like competitive programming and algorithm practice — a lighter-weight alternative to spinning up a full app for what's mostly static content and community info.
-
+AlliedAlgorithms website was initailly made to spread word about our fll team. Our team worked hard throughout the season abnd made many opensoureec projects which we let otehr teas download and we hooked up a discord webhook to count each download,
 ## What it does
 
-- Community info and getting-started resources
+- Includes info on members and past seasons
 - Content driven by simple TOML data files rather than a database
-- Fully static, deployed straight to GitHub Pages
+- Includes opensoruce files nad a way to track them
 
 ## Tech stack
 

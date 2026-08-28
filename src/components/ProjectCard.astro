@@ -13,16 +13,40 @@ const dateLabel = date
 const filename = image ? `${project.id}.${image.format}` : null;
 const ext = image?.format?.toUpperCase() ?? null;
 
-// Pick ink that stays readable on the card's own colour.
+// Pick whichever ink — near-black or near-white — has the higher WCAG
+// contrast ratio against the card's own colour, so text stays readable
+// (not just "readable enough by a luma guess") on any --card value.
+function relativeLuminance(r: number, g: number, b: number) {
+  const [rs, gs, bs] = [r, g, b].map((c) => {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+}
+
+function contrastRatio(l1: number, l2: number) {
+  const [lighter, darker] = l1 > l2 ? [l1, l2] : [l2, l1];
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 const hex = color.replace("#", "");
 const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16));
-const isDark = (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.6;
-const ink = isDark ? "#fff" : "#111212";
+const bgLuminance = relativeLuminance(r, g, b);
+const blackInkLuminance = relativeLuminance(0x11, 0x12, 0x12); // #111212
+const ink =
+  contrastRatio(bgLuminance, blackInkLuminance) >= contrastRatio(bgLuminance, 1)
+    ? "#111212"
+    : "#fff";
+
+// Folder tabs fan out sideways as more featured projects are added; past 8
+// that stops fitting the page width, so later cards just stack in place
+// instead of running off the edge.
+const tabOffset = Math.min(index, 7) * 235;
 ---
 
 <article
   class="folder-card"
-  style={`--card:${color};--ink:${ink};--tabx:${index * 235}px;z-index:${index + 1}`}
+  style={`--card:${color};--ink:${ink};--tabx:${tabOffset}px;z-index:${index + 1}`}
 >
   <div class="fc-shell">
     <div class="fc-tabrow">
@@ -91,7 +115,7 @@ const ink = isDark ? "#fff" : "#111212";
             </div>
           )}
           {filename && (
-            <span class="fc-file">
+            <span class="fc-file" aria-hidden="true">
               {ext && <b>{ext}</b>}
               {filename}
             </span>
@@ -203,6 +227,12 @@ const ink = isDark ? "#fff" : "#111212";
     font-size: 0.78rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+
+  .fc-view:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
   }
 
   .fc-tag {

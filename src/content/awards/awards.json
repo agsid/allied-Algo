@@ -1,34 +1,18 @@
 [
   {
-    "id": "innovation-in-control-2025",
+    "id": "cas-nominee",
     "order": 1,
-    "year": "2025",
-    "title": "Innovation in Control Award",
-    "org": "FIRST Robotics Competition",
-    "desc": "Recognising the control system and autonomous routines behind the season's robot."
+    "year": "2026",
+    "title": "CAS Nominee",
+    "org": "Connecticut School Association",
+    "desc": "Notinated or being a leader in the school with beign an active citizen with good grades."
   },
   {
-    "id": "regional-ctf-top-10-2025",
+    "id": "fll-state",
     "order": 2,
     "year": "2025",
-    "title": "Top 10 Finish",
-    "org": "Regional CTF Competition",
-    "desc": "Placed in the top ten as part of a student team across web, crypto, and reversing categories."
-  },
-  {
-    "id": "best-student-project-2024",
-    "order": 3,
-    "year": "2024",
-    "title": "Best Student Project",
-    "org": "Regional Hackathon",
-    "desc": "Awarded for a team-operations tool built and shipped over a weekend."
-  },
-  {
-    "id": "cs-excellence-2023",
-    "order": 4,
-    "year": "2023",
-    "title": "Excellence in Computer Science",
-    "org": "School Honors",
-    "desc": "Departmental recognition for coursework and independent projects."
+    "title": "State Champ",
+    "org": "First lego League",
+    "desc": "I lead my FLL team Allied Algorithms to the World Championship by placing 1st throughout hte enitre state."
   }
 ]

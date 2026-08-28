@@ -5,7 +5,7 @@ tags: ["Svelte", "Server", "Tailwind"]
 url: "https://singul.tech/"
 color: "#ffb84f"
 featured: true
-order: 2
+order: 3
 date: 2026-04-18
 ---
 

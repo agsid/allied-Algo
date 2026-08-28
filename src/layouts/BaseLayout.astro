@@ -21,7 +21,7 @@ interface Props {
 
 const {
   title,
-  description = "Sid Agrawal is a student developer in Connecticut building robotics team software, cybersecurity training platforms, and fast web apps with Astro and Svelte.",
+  description = "Sid Agrawal is a student developer in Connecticut building robotics team software and fast web apps with Astro and Svelte.",
   type = "website",
   publishedDate,
   modifiedDate,
@@ -36,7 +36,7 @@ const EMAIL = "sidagrawal@robotics-catalyst.org";
 const GITHUB = "https://github.com/agsid";
 
 const isHome = title === SITE_NAME;
-const pageTitle = isHome ? `${SITE_NAME} — Student Developer, Robotics & Security` : `${title} — ${SITE_NAME}`;
+const pageTitle = isHome ? `${SITE_NAME} — Student Developer, Robotics & Web` : `${title} — ${SITE_NAME}`;
 const imageAlt = isHome ? `${AUTHOR}, student developer` : `${AUTHOR} — ${title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -53,7 +53,6 @@ const keywords = [
   "student developer",
   "robotics software",
   "FIRST robotics tools",
-  "cybersecurity CTF platform",
   "Astro developer",
   "Svelte developer",
   "Connecticut developer",
@@ -76,7 +75,7 @@ const graph: Record<string, unknown>[] = [
     email: `mailto:${EMAIL}`,
     jobTitle: "Student Developer",
     description:
-      "Student developer building robotics team operations software, cybersecurity training platforms, and web applications.",
+      "Student developer building robotics team operations software and web applications.",
     address: {
       "@type": "PostalAddress",
       addressRegion: "Connecticut",
@@ -89,8 +88,6 @@ const graph: Record<string, unknown>[] = [
     },
     knowsAbout: [
       "Robotics software",
-      "Cybersecurity",
-      "Capture the flag competitions",
       "Web development",
       "Astro",
       "Svelte",

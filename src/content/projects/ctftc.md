@@ -1,12 +1,12 @@
 ---
 title: "CTFTC"
 summary: "A capture-the-flag training ground for cybersecurity practice, with authentication and AI-assisted hints."
-tags: ["Svelte", "Auth", "AI"]
-url: "https://ctftc.robotics-catalyst.org"
+tags: ["Svelte", "Auth", "Admin Page"]
+url: "https://connecticutftc.org"
 color: "#ff6f91"
 featured: true
-order: 3
-date: 2026-03-01
+order: 2
+date: 2026-08-10
 ---
 
 ## Overview

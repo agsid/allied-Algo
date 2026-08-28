@@ -1,0 +1,45 @@
+[
+  {
+    "order": 1,
+    "name": "Taekwondo",
+    "role": "Student",
+    "period": "Current",
+    "desc": "Add details about your training and rank here.",
+    "tags": ["Martial Arts"]
+  },
+  {
+    "order": 2,
+    "name": "SingulTech Robotics",
+    "role": "Team Member",
+    "period": "Current",
+    "desc": "Add details about your work on the team here.",
+    "tags": ["Robotics"],
+    "url": "https://singul.tech/"
+  },
+  {
+    "order": 3,
+    "name": "Robolyst",
+    "role": "Team Member",
+    "period": "Current",
+    "desc": "Add details about your involvement here.",
+    "tags": ["Robotics"],
+    "url": "https://robolyst.org"
+  },
+  {
+    "order": 4,
+    "name": "Cross Country",
+    "role": "Runner",
+    "period": "Current",
+    "desc": "Add details about your season and team here.",
+    "tags": ["Sports"]
+  },
+  {
+    "order": 5,
+    "name": "SingulTech",
+    "role": "Jr. Mentor",
+    "period": "Current",
+    "desc": "Add details about mentoring younger teammates here.",
+    "tags": ["Mentoring"],
+    "url": "https://singul.tech/"
+  }
+]

@@ -10,6 +10,8 @@ url: "https://sidag.w3spaces.com/"
 color: "#16a34a"
 order: 13
 featured: false
+versionOf: "robotics-team-website-v3"
+versionLabel: "V1"
 date: 2024-09-01
 image: "../../assets/projects/robotics-team-website-v1.webp"
 imageAlt: "The first version of the robotics team website"

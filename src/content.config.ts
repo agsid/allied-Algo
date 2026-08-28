@@ -19,6 +19,10 @@ const projects = defineCollection({
       order: z.number(),
       /** Featured projects get the big folder cards; the rest go to the archive. */
       featured: z.boolean().default(false),
+      /** Slug of the parent project, when this entry is an older/alternate version of it. */
+      versionOf: z.string().optional(),
+      /** Short label for the version switcher, e.g. "V1". Defaults to the title. */
+      versionLabel: z.string().optional(),
       date: z.coerce.date().optional(),
       image: image().optional(),
       imageAlt: z.string().optional(),
@@ -47,6 +51,7 @@ const volunteering = defineCollection({
       org: z.string(),
       period: z.string(),
       desc: z.string(),
+      hours: z.number().default(0),
       tags: z.array(z.string()).default([]),
       url: z.string().optional(),
       image: image().optional(),
@@ -69,4 +74,20 @@ const awards = defineCollection({
     }),
 });
 
-export const collections = { projects, blog, volunteering, awards };
+const activities = defineCollection({
+  loader: file("./src/content/activities/activities.json"),
+  schema: ({ image }) =>
+    z.object({
+      order: z.number(),
+      name: z.string(),
+      role: z.string(),
+      period: z.string(),
+      desc: z.string(),
+      tags: z.array(z.string()).default([]),
+      url: z.string().optional(),
+      image: image().optional(),
+      imageAlt: z.string().optional(),
+    }),
+});
+
+export const collections = { projects, blog, volunteering, awards, activities };

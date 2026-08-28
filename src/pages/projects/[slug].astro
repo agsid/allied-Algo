@@ -2,18 +2,31 @@
 import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import VersionSwitcher from "../../components/VersionSwitcher.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
   return projects.map((project) => ({
     params: { slug: project.id },
-    props: { project },
+    props: { project, allProjects: projects },
   }));
 }
 
-const { project } = Astro.props;
-const { title, summary, tags, learned, url, github, color, date, image, imageAlt } = project.data;
+const { project, allProjects } = Astro.props;
+const { title, summary, tags, learned, url, github, color, versionOf, versionLabel, date, image, imageAlt } = project.data;
 const { Content } = await render(project);
+
+// A project is either the parent of a version family or one of its versions —
+// either way, gather the whole family so every version can link to the others.
+const parentId = versionOf ?? project.id;
+const versions = allProjects
+  .filter((p) => p.id === parentId || p.data.versionOf === parentId)
+  .sort((a, b) => (a.data.date?.valueOf() ?? 0) - (b.data.date?.valueOf() ?? 0))
+  .map((p) => ({
+    id: p.id,
+    label: p.data.versionLabel ?? p.data.title,
+    isCurrent: p.id === project.id,
+  }));
 
 const projectSchema = {
   "@type": "SoftwareApplication",
@@ -75,6 +88,8 @@ const projectSchema = {
           </a>
         )}
       </div>
+
+      {versions.length > 1 && <VersionSwitcher versions={versions} color={color} />}
 
       {image && (
         <figure class="mt-10 overflow-hidden rounded-2xl border-2 border-black/80 shadow-[5px_5px_0_#000] dark:border-white/70 dark:shadow-[5px_5px_0_rgba(255,255,255,0.25)]">

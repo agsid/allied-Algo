@@ -8,8 +8,14 @@ const links = [
   { href: "/about/", label: "About" },
   { href: "/projects/", label: "Projects" },
   { href: "/blog/", label: "Journal" },
-  { href: "/awards/", label: "Awards" },
 ];
+const moreLinks = [
+  { href: "/awards/", label: "Awards" },
+  { href: "/volunteering/", label: "Volunteering" },
+  { href: "/clubs/", label: "Clubs & Activities" },
+];
+const mobileLinks = [...links, ...moreLinks];
+const isMoreActive = moreLinks.some((link) => pathname === link.href);
 ---
 
 <header class="sticky top-0 z-50 px-4 pt-4 sm:px-6" data-site-header>
@@ -38,6 +44,38 @@ const links = [
           {link.label}
         </a>
       ))}
+
+      <details id="more-dropdown" class="relative">
+        <summary
+          class:list={[
+            "flex cursor-pointer list-none items-center gap-1 rounded-lg px-3.5 py-1.5 text-xs font-semibold tracking-wide uppercase transition-all marker:content-none [&::-webkit-details-marker]:hidden",
+            isMoreActive
+              ? "border-2 border-black bg-white text-black shadow-[2px_2px_0px_#000] dark:border-white dark:bg-[#1b1b1f] dark:text-white dark:shadow-[2px_2px_0px_#fff]"
+              : "border-2 border-transparent text-black/50 hover:text-black dark:text-white/50 dark:hover:text-white",
+          ]}
+        >
+          More
+          <svg viewBox="0 0 24 24" width="10" height="10" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <div class="absolute top-full left-0 z-10 mt-2 min-w-[13rem] rounded-xl border-2 border-black/80 bg-white p-1.5 shadow-[4px_4px_0px_#000] dark:border-white/70 dark:bg-[#1b1b1f] dark:shadow-[4px_4px_0px_rgba(255,255,255,0.25)]">
+          {moreLinks.map((link) => (
+            <a
+              href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
+              class:list={[
+                "block rounded-lg px-3 py-2 text-xs font-semibold tracking-wide uppercase transition-colors",
+                pathname === link.href
+                  ? "bg-black/5 text-black dark:bg-white/10 dark:text-white"
+                  : "text-black/50 hover:bg-black/5 hover:text-black dark:text-white/50 dark:hover:bg-white/10 dark:hover:text-white",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </details>
     </nav>
 
     <div class="flex items-center gap-2">
@@ -81,7 +119,7 @@ const links = [
     class="mx-auto mt-3 hidden max-w-5xl rounded-2xl border-2 border-black/80 bg-white/70 p-3 shadow-[4px_4px_0px_#000] backdrop-blur-xl md:!hidden dark:border-white/70 dark:bg-[#1b1b1f]/70 dark:shadow-[4px_4px_0px_rgba(255,255,255,0.25)]"
   >
     <nav aria-label="Mobile" class="flex flex-col">
-      {links.map((link, i) => (
+      {mobileLinks.map((link, i) => (
         <a
           href={link.href}
           aria-current={pathname === link.href ? "page" : undefined}
@@ -118,6 +156,18 @@ const links = [
     try {
       localStorage.setItem("theme", next);
     } catch (e) {}
+  });
+
+  const moreDropdown = document.getElementById("more-dropdown") as HTMLDetailsElement | null;
+  document.addEventListener("click", (e) => {
+    if (moreDropdown?.open && !moreDropdown.contains(e.target as Node)) {
+      moreDropdown.open = false;
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && moreDropdown?.open) {
+      moreDropdown.open = false;
+    }
   });
 
   const menuToggle = document.getElementById("menu-toggle");

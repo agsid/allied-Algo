@@ -1,6 +1,6 @@
 ---
-title: "Robotics Team Website (V3)"
-summary: "The third rebuild of the robotics team site — more sections, better typography, and enough content to actually represent the team."
+title: "Robotics Team Website"
+summary: "The team's public site, rebuilt three times — from a single static page to a maintained multi-section site."
 tags: ["HTML", "CSS", "JavaScript"]
 learned:
   - "Structuring a multi-section site so content can grow without a rewrite"
@@ -10,6 +10,7 @@ url: "https://agsid.github.io/website/index.html"
 color: "#16a34a"
 order: 5
 featured: false
+versionLabel: "V3"
 date: 2025-08-28
 image: "../../assets/projects/robotics-team-website-v3.webp"
 imageAlt: "Homepage of the third version of the robotics team website"

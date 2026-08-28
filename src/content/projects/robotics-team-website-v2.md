@@ -10,6 +10,8 @@ url: "https://allied-algorithms.w3spaces.com/"
 color: "#16a34a"
 order: 14
 featured: false
+versionOf: "robotics-team-website-v3"
+versionLabel: "V2"
 date: 2025-01-01
 image: "../../assets/projects/robotics-team-website-v2.webp"
 imageAlt: "The second version of the robotics team website"
