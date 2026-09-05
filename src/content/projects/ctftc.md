@@ -15,8 +15,8 @@ Comprehensive website for  Connecticut First Tech Challenge and displaying event
 ## What it does
 
 -  Displays all events with a quick voluntwer sign up adn pics for all events 
--has an admin page to edit data
--a full newsletter sender and contact form
+-  has an admin page to edit data
+-  a full newsletter sender and contact form
 
 ## Tech stack
 
